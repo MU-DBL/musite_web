@@ -1,0 +1,60 @@
+version: '3.1'
+services:
+  server:
+    build: .
+    image: duolinwang/musitedeep_backend:2.0
+    expose: 
+      - 5000
+    environment:
+      API_HOST: "http://localhost:3000"
+      APP_SERVER_PORT: 5000
+    restart: always
+    ports:
+      - '5000:5000'
+    depends_on:
+      - 'mongo'
+    networks:
+      - my-network
+    command: sh -c "cd ./mongoblast/ && python3 setup.py -download 0 && cd /musite && node app.js"
+  
+  ion:
+    build: .
+    image: yongfangqin/ionpred:latest
+    expose: 
+      - 5004
+    environment:
+      API_HOST: "http://localhost:5004"
+      APP_SERVER_PORT: 5004
+    restart: always
+    ports:
+      - '5004:5004'
+    networks:
+      - my-network
+
+  mongo:
+    image: mongo:4.0
+    command: mongod --port 23333
+    ports:
+      - "127.0.0.1:23333:23333"
+    restart: always
+    networks:
+      - my-network
+    
+  web:
+    build: ./web
+    image: yongfangqin/musitedeep_web:2.1
+    restart: always
+    expose: 
+      - 3333
+    ports:
+      - '127.0.0.1:3333:3333'
+    networks:
+      - my-network
+    depends_on:
+      - server
+      - ion
+    command: sh -c "export PORT=3333 && npm start"
+
+networks:
+  my-network:
+    driver: bridge
