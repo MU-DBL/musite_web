@@ -24,7 +24,6 @@ function mkdirsSync( dirname ) {
   }
 }
 
-
   processData = (input, output) =>{
     let results = [{}];
     let title=[">querySeq"];
@@ -152,7 +151,6 @@ setInterval(() => {app.use(checkFileAge(__dirname + '/users/upload-files', 25920
 
 //每1秒，后台检查一次是否有job结束。
 setInterval(() => {app.use(checkRunning.checkRunning())}, 1000);
-
 
 router.get('/musitedeep/:model/:seqs/', async(ctx, next) => {
  let model = ctx.params.model;

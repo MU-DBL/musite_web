@@ -5,7 +5,7 @@ import saveAs from 'file-saver';
 import JSZip from 'jszip';
 import Element from '../../children/element/element';
 import style from './output.module.css';
-import Slider from 'react-bootstrap-slider';
+// import Slider from 'react-bootstrap-slider';
 import Select from 'react-select';
 import MySelect from "./MySelect.js";
 import _ from 'underscore';
@@ -691,7 +691,7 @@ class Output extends React.Component {
             <div className = {style.holder}>
                <div className = {style.slider}> 
                      <span className="font-weight-bold purple-text" style={{ marginLeft:"30px",marginRight: "5px" }}>{this.state.min}</span>
-                     <Slider 
+                     {/* <Slider 
                        id="input-slider"
                        ref={e => {
                          if (e) this.sliderRef = e.mySlider;
@@ -701,7 +701,7 @@ class Output extends React.Component {
                        step={this.state.step}
                        min={this.state.min}
                        max={this.state.max}
-                     />
+                     /> */}
                      <span className="font-weight-bold blue-text" style={{ marginLeft: "5px",marginRight:"30px" }}>{this.state.max}</span>
                </div>
                   

@@ -6,12 +6,11 @@ import style from './predict.module.css';
 import File from '../../children/file/file.js';
 import FileSuccess from '../../children/fileSuccess/fileSuccess.js';
 import Jobsubmitted from '../../children/jobsubmitted/jobsubmitted.js';
-import Textarea from '../../children/textarea/textarea.js';
+import IonTextarea from '../../children/textarea/iontextarea.js';
 import Down from '../../children/down/down.js'
 //import Select, { components } from 'react-select';
 import MySelect from "./MySelect.js";
 import { IonEnum } from '../../../constants.js';
-
 
 const modeloptions = [
 { label: 'Phosphorylation (S,T)', value:"Phosphoserine_Phosphothreonine"},
@@ -29,38 +28,13 @@ const modeloptions = [
 { label:'Hydroxylysine (K)',value:"Hydroxylysine"},
 { label:'Zinc (C, H, E, D)',value: IonEnum.ZINC},
 { label:'Copper (C, H) ',value: IonEnum.COPPER},
-{ label:'Ferrous (D, E, H)',value: IonEnum.FERROUS},
+{ label:'Ferrous (D, E, H)',value: IonEnum.FERROUS}
 ];
 
+const isIonPred = true;
 
-//const DropdownIndicator = (
-//  props: ElementConfig<typeof components.DropdownIndicator>
-//) => {
-//  return (
-//    <components.DropdownIndicator {...props}>
-//    </components.DropdownIndicator>
-//  );
-//};
-//
-//const customStyles = {
-//  option: (provided, state) => ({
-//    ...provided,
-//    //borderBottom: '2px dotted green',
-//    color: state.isSelected ? 'yellow' : 'black',
-//    backgroundColor: state.isSelected ? 'green' : 'white'
-//    
-//  }),
-//  control: (provided) => ({
-//    ...provided,
-//    marginTop: "0%",
-//    marginLeft: "5%",
-//    marginRight: "5%",
-//    display:'inline-block',
-//    width:'80%'
-//  })
-//}
 
-class Predict extends React.Component{
+class IonPredict extends React.Component{
 
 	constructor(props){
 		super(props);
@@ -104,15 +78,14 @@ class Predict extends React.Component{
                                           />
                             </div>
  		  				    <div className = {this.props.reversed ? style.predict1 : style.predict2}>									
- 		  					    <Textarea pasted = {this.props.pasted}
-                                           /*只有下面的data传过来就会被显示了*/
+ 		  					    {<IonTextarea pasted = {this.props.pasted}
                                            data = {this.props.data} 
                                            handleExample = {this.props.handleExample} 
                                            changeInput = {this.props.changeInput} 
-                                           handleClick = {this.props.handlePredictSeq} 
-                                           turnToUpload = {this.props.turnToUpload}/>
- 		  					    <File  reversed = {this.props.reversed} onDrop = {this.props.onDrop} turnToInput = {this.props.turnToInput}/>
-                                <FileSuccess reversed = {this.props.reversed} recievedfile= {this.props.recievedfile} reversedsubmitted = {this.props.reversedsubmitted} uploadpredict = {this.props.uploadpredict} turnToInput = {this.props.turnToInput} turnToUpload = {this.props.turnToUpload}/>
+                                           handleClick = {this.props.handlePredictSeq}  
+                                           turnToUpload = {this.props.turnToUpload}/>}
+ 		  					    <File reversed = {this.props.reversed} onDrop = {this.props.onDrop} turnToInput = {this.props.turnToInput}/>
+                                <FileSuccess reversed = {this.props.reversed} recievedfile= {this.props.recievedfile} reversedsubmitted = {this.props.reversedsubmitted} uploadpredict = {this.props.uploadpredict} turnToInput = {this.props.turnToInput} turnToUpload = {this.props.turnToUpload}/> 
  		  				        <Jobsubmitted jobsubmit = {this.props.jobsubmit} 
                                                turnToInput = {this.props.turnToInput} 
                                                turnToUpload = {this.props.turnToUpload} 
@@ -120,7 +93,6 @@ class Predict extends React.Component{
                                                userId = {this.props.userId} 
                                                modelOptions = {this.props.modelOptions}/>
                               </div>
-                            
 		                </div>
                     </div>
 
@@ -130,21 +102,4 @@ class Predict extends React.Component{
 }
 
 
-export default Predict
-
-
-//  <div className = {style.options}>
-//      <div className={style.button}>Please select a prediction model:
-//      </div>
-//      <div className= {style.select}>
-//          <MySelect isMulti  
-//              options={modeloptions} 
-//              closeMenuOnSelect={true}  
-//              value = {this.props.modelOptions} 
-//              defaultValue={[modeloptions[0]]}  
-//              onChange = {this.props.changeModel}
-//              allowSelectAll={true}
-//              />
-//      </div>
-//  </div>
-
+export default IonPredict

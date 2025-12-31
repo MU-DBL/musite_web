@@ -15,9 +15,15 @@ import Output from './components/super/output/output';
 import Footer from './components/super/footer/footer';
 import './main.module.css';
 import style from './main.module.css';
+import { IonEnum } from './constants';
+import IonPredict from './components/super/predict/ionpredict';
+
+const ionOptions = [IonEnum.ZINC, IonEnum.COPPER, IonEnum.FERROUS];
+const ionUrl = document.location.protocol + "//" + document.location.hostname + ":5004/ionpred_api";
+console.log(ionUrl)
 
 class Main extends Component {
-
+  
 	constructor(props){
 		super(props);
 		this.state = {
@@ -56,7 +62,8 @@ class Main extends Component {
          jobsubmit:false,
          recievedfile:"",
 		}
-        console.log("in constructor")
+
+    console.log("in constructor")
 	}
 
   changeSpace = value => {
@@ -68,7 +75,7 @@ class Main extends Component {
   //修改sequence
   changeInput = e => {
     let data = e.target.value;
-    //console.log(data)
+    // console.log(data)
     this.setState({
       data: data
     });
@@ -76,14 +83,189 @@ class Main extends Component {
 
   //修改model
   changeModel = modelOptions => {
-  this.setState({modelOptions:modelOptions});
-  let temp ="";
+
+    const selectedRestricted = (modelOptions && modelOptions.filter(option => ionOptions.includes(option.value))) || [];
+
+    // If more than one ion option is selected
+    if (selectedRestricted.length > 1 || 
+      (selectedRestricted.length == 1 && modelOptions.length > 1)){     
+        swal({
+        text: "For ion binding prediction, we can only select one of the options: 'Zinc', 'Copper', or 'Ferrous'!",
+        icon: "info",
+        button: "Got it!"//,
+        //timer: 3000
+      });
+      return;
+    }
+
+    // one of ion option selected / multiple of PTM options selected
+    this.setState({modelOptions:modelOptions});
+    let temp ="";
   }
   
   //点击example
   handleExample = () =>{
     this.setState({
       data: ">sp|P97756|KKCC1_RAT Calcium/calmodulin-dependent protein kinase kinase 1 OS=Rattus norvegicus GN=Camkk1 PE=1 SV=1\nMERSPAVCCQDPRAELVERVAAISVAHLEEAEEGPEPASNGVDPPPRARAASVIPGSASR\nPTPVRPSLSARKFSLQERPAGSCLEAQVGPYSTGPASHMSPRAWRRPTIESHHVAISDTE\nDCVQLNQYKLQSEIGKGAYGVVRLAYNEREDRHYAMKVLSKKKLLKQYGFPRRPPPRGSQ\nAPQGGPAKQLLPLERVYQEIAILKKLDHVNVVKLIEVLDDPAEDNLYLVFDLLRKGPVME\nVPCDKPFPEEQARLYLRDIILGLEYLHCQKIVHRDIKPSNLLLGDDGHVKIADFGVSNQF\nEGNDAQLSSTAGTPAFMAPEAISDTGQSFSGKALDVWATGVTLYCFVYGKCPFIDEYILA\nLHRKIKNEAVVFPEEPEVSEELKDLILKMLDKNPETRIGVSDIKLHPWVTKHGEEPLPSE\nEEHCSVVEVTEEEVKNSVKLIPSWTTVILVKSMLRKRSFGNPFEPQARREERSMSAPGNL\nLLKEGCGEGGKSPELPGVQEDEAAS"
+    })
+  }
+
+  handleIonExample = () =>{
+    this.setState({
+      data: "1A5T_A"
+    })
+  }
+
+  handleIonPredictSeqmain = () => {
+    // console.log("test")
+    this.setState({
+      pasted: true,
+      showOutput: true
+    })
+    setTimeout(() => window.scrollTo(0, this.refs.footer.offsetTop), 200); 
+    this.clearResult();
+
+    let time = new Date().toISOString()
+    this.setState({
+      time: time,
+      outputjobId: time
+    })
+
+    const residues_name= {
+      'Zinc': 'ZN',
+      'Copper': 'CU',
+      'Ferrous': 'FE2',
+      'Calcium': 'CA',
+      'Magnesium': 'MG',
+      'Manganese': 'MN',
+      'Sodium': 'NA',
+      'Potassium': 'K'};
+
+    const ion = residues_name[this.state.modelOptions[0].value];
+    const local_time = new Date().toISOString();
+
+    let data = new FormData();
+    data.append('userId', this.state.userId);
+    data.append('time', local_time);
+    data.append('pdbId', this.state.data);
+    data.append('ion', ion);
+    data.append('cutoff', "0.5");
+    for (let [k, v] of data.entries()) {
+      console.log(k, v);
+    }
+
+    if(this.state.modelOptions.length == 1 && ionOptions.includes(this.state.modelOptions[0].value)){
+      $.ajax(
+        {
+          type: 'post',
+          url: ionUrl+'/predict',
+          data: data,
+          processData: false,
+          contentType: false,
+          success: data => {
+            try {
+              this.processIonPredictData(data);
+              this.handleShowOutput();
+            } catch (error) {
+              swal({
+                title: "Prediction failed!",
+                text: "Please try again later.",
+                icon: "info",
+                button: "Got it!"
+              });
+              console.error('Processing error:', error);
+            }
+          },
+          error: (XMLHttpRequest, textStatus, errorThrown) => {
+            swal({
+              title: "Prediction failed!",
+              text: "Please try again later.",
+              icon: "info",
+              button: "Got it!"
+              });
+            console.log(XMLHttpRequest.status);//500
+            console.log(XMLHttpRequest.readyState);//4
+            console.log(textStatus);//error
+            console.log(errorThrown);//Internal server error 
+          }
+        }
+        )
+    }else{
+      swal({
+        text: "Please select at least one model!",
+        icon: "info",
+        button: "Got it!"
+      });
+      return;
+    }
+  }
+
+  processIonPredictData = (output)  =>{
+    output = output.split(/[\r\n]+/);
+    if(output[output.length - 1] === ''){
+      output.pop();//如果最后一个是空也要去掉
+    }
+
+    let title = this.state.title;
+    let titleindex = this.state.titleindex;
+    let results = [{}];
+    let tmp = [];
+    let outputhash = {};
+    let lastshow=""; 
+    //abstract title and sequence from output file
+    let key = output[1].split("\t")[0];
+    let seq = output[1].split("\t")[1];
+    // Remove the last element if it's an empty string
+    if (seq[seq.length - 1] === '') {
+      seq.pop();
+    }
+    seq= seq.split(''); // split it into characters
+    // Filter out carriage return (ASCII 13) and space (ASCII 32) characters
+    seq = seq.filter(ele => {
+      const charCode = ele.charCodeAt();
+      return charCode !== 13 && charCode !== 32; // 32 is space, 13 is carriage return
+    });
+
+    tmp.push(seq);
+
+    let j=0;
+    title[j] = key;
+    titleindex[j]={'label': key, 'value':j};
+
+    let score;
+    let pos;
+
+    for(let i=2;i<output.length;i++){ //output加了header j 从1开始
+      pos = output[i].split("\t")[1];
+      lastshow =output[i].split("\t")[3];
+      if(outputhash.hasOwnProperty(key)){
+        outputhash[key].push(pos+"\t"+lastshow);
+      }else{
+          outputhash[key]=[];
+          outputhash[key][0] = pos+"\t"+lastshow;
+      }  
+    } 
+
+    for(let i = 0; i < title.length; i +=1){
+      results[i] = {}; 
+      key =  title[i];
+      if(outputhash.hasOwnProperty(key))
+      {
+          for(j=0;j<outputhash[key].length;j++)
+          {
+             pos = outputhash[key][j].split("\t")[0]; // pos must be numbers 
+             score = outputhash[key][j].split("\t")[1];
+             results[i][pos] = score;
+          }
+      }
+    }
+
+    this.setState({
+      title: title,
+      titleindex:titleindex,
+      input: tmp,
+      results: results,
+      currentresultstatus:"All:100"
     })
   }
 
@@ -207,8 +389,8 @@ class Main extends Component {
       //console.log("the fasta in predictictsubmit is "+fasta)
       let time = new Date().toISOString(); //this is the current time
       this.setState({
-		  time: time,
-          outputjobId:time
+		    time: time,
+        outputjobId:time
 	  })
       
      $.ajax(
@@ -471,6 +653,84 @@ onDrop = file => {
   }
 
 
+  // onIonDrop = file => {
+  // 	if(file.length < 1) return;
+  // 	let userId = localStorage.getItem('userIdMusiteDeep');
+  //   // console.log(userId) //2024-07-31T16:48:32.585Z5zolqz1qjlk
+  //   let data = new FormData();
+  //   let time = new Date().toISOString();//以上传文件时的时间记录这个job, 如果改为上传文件时 传就要加这个。
+  //   this.setState({
+	// 	  time: time
+  //   })
+  //   data.append('file', file[0]);
+  //   data.append('userId', userId);
+  //   data.append('time', time);
+  //   this.setState({
+  //     showOutput: false
+  //   })
+
+  //   this.clearResult();
+  //   // console.log("clearResult")
+  //   $.ajax(
+  //   {
+  //     type: 'post',
+  //     url: ionUrl + "/upload",
+  //     data: data,
+  //     processData: false,
+  //     contentType: false,
+  //     success: data => {
+      
+  //     // console.log(data)
+  //     if(!data["pdb"]){
+  //         swal({
+  //           title: "Invalid PDB format",
+  //           text: "Please upload file with the correct PDB format!",
+  //           icon: "info",
+  //           button: "Got it!"
+  //         });
+  //         this.setState({
+  //           showOutput: false,
+  //         })
+  //         return;
+  //     }
+  //     else if(!data["success"]){
+  //         swal({
+  //           title: "Upload file failed!",
+  //           text: "Please try again later!",
+  //           icon: "info",
+  //           button: "Got it!"
+  //         });
+  //         this.setState({
+  //           showOutput: false,
+  //         })
+  //         return;
+  //     }
+
+  //     this.setState({
+  //          recievedfile: file[0]['name'],
+  //       })
+        
+  //     this.turnToUploadSuccess();
+  //     },
+  //     error: (XMLHttpRequest, textStatus, errorThrown) => {
+  //       swal({
+  //         title: "Upload file failed, please try again later!",
+  //         icon: "info",
+  //         button: "Got it!"
+  //       });
+  //       this.setState({
+  //         showOutput:false, 
+  //       }) 
+  //       console.log(XMLHttpRequest.status);
+  //       console.log(XMLHttpRequest.readyState);
+  //       console.log(textStatus);
+  //       return;
+  //     }
+  //   }
+  // 	)
+  // }
+
+
 	turnToInput = () => {
 		this.setState({
             pasted:true,
@@ -655,7 +915,6 @@ handleuploadpredict = () => {
     //
     //}else{clearInterval(interval);}
     //},5000)
-    
   }
 
   //在submit时检查input数据，并把空格，空白的行去掉等操作，如果是fasta返回true 否则返回false
@@ -726,6 +985,10 @@ handleuploadpredict = () => {
  //对返回的输入输出进行格式处理，然后将新的输入输出存到state中。
  //对结果的输入输出处理，多结果的处理也是在这里地方！
   processData = (input, output) =>{
+
+    console.log(input)
+    console.log(output)
+
     let title = this.state.title;
     let titleindex = this.state.titleindex;
     let results = [{}];
@@ -816,8 +1079,11 @@ handleuploadpredict = () => {
           }
       }
     }
-    
-    //console.log(results);
+    // console.log(title);
+    // console.log(titleindex);
+    // console.log(tmp);
+    // console.log(results);
+  
     this.setState({
       title: title,
       titleindex:titleindex,
@@ -1331,11 +1597,24 @@ handleuploadpredict = () => {
         {
             showresult = true;
         }
+
+        const selectedRestricted = (this.state.modelOptions && this.state.modelOptions.filter(option => ionOptions.includes(option.value))) || [];
+        
+        let showIonPredict = false;
+        if(selectedRestricted.length > 0){
+          showIonPredict = true;
+        }
+        else{
+          showIonPredict = false;
+        }
+
+      // console.log(showIonPredict)
+
 		return (
 		<div className = {style.main}>
         <header>
 				  <Header handleShowPtm = {this.handleShowPtm} handleShowAPI={this.handleShowAPI} handleShowContact={this.handleShowContact} handleShowHelp={this.handleShowHelp} handleShowPredict = {this.handleShowPredict} handleShowProfile = {this.handleShowProfile}/>
-		</header>
+		    </header>
         <Summary visitors = {this.state.visitors} num_protein = {this.state.processed_num_proteins} num_sites = {this.state.processed_num_sites}/>
         <main ref = "main" className = { showresult ? style.large : style.small }>
                 <div className = {this.state.showPtm ? style.ptm : style.ptmHide}>
@@ -1361,7 +1640,34 @@ handleuploadpredict = () => {
                   
                 </div>
                 <div className = {this.state.showPredict ? style.predict : style.predictHide}>
-		  	     		<Predict space = {this.state.space} 
+                {showIonPredict ? (
+                <>
+                {/* For Ion binding prediction */}
+                <IonPredict space = {this.state.space} 
+                                       data = {this.state.data} 
+                                       processData = {this.processData} 
+                                       changeModel = {this.changeModel} 
+                                       changeInput = {this.changeInput} 
+                                       handleExample = {this.handleIonExample} 
+                                       handlePredictSeq = {this.handleIonPredictSeqmain}
+                                       uploadpredict = {this.handleuploadpredict}
+                                       onDrop = {this.onDrop}
+                                       recievedfile={this.state.recievedfile}
+                                       turnToUpload = {this.turnToUpload}
+                                       turnToInput = {this.turnToInput}
+                                       pasted = {this.state.pasted}
+                                       reversed={this.state.reversed}
+                                       reversedsubmitted={this.state.reversedsubmitted}
+                                       jobsubmit = {this.state.jobsubmit}
+                                       jobId = {this.state.time}
+                                       uploadcontent={this.state.uploadcontent}
+                                       userId = {this.state.userId}
+                                       modelOptions = {this.state.modelOptions}
+                                       handleShowOutput = {this.handleShowOutput}/>
+                </>
+              ) : (
+                <>
+                  <Predict space = {this.state.space} 
                                        data = {this.state.data} 
                                        processData = {this.processData} 
                                        changeModel = {this.changeModel} 
@@ -1382,6 +1688,8 @@ handleuploadpredict = () => {
                                        userId = {this.state.userId}
                                        modelOptions = {this.state.modelOptions}
                                        handleShowOutput = {this.handleShowOutput}/>
+                    </>
+                  )}
                 </div>
                 <div className = {showresult ? style.result : style.resultHide}>
                     <Output title = {this.state.title}
@@ -1404,6 +1712,9 @@ handleuploadpredict = () => {
                        <li>Pyrrolidone carboxylic acid:  <span style={{fontWeight: '700',color:'Purple'}}>pc</span></li>
                        <li>Palmitoylation:  <span style={{fontWeight: '700',color:'Maroon'}}>pa</span></li>
                        <li>Hydroxylation:  <span style={{fontWeight: '700',color:'Green'}}>Hy</span></li>
+                       <li>Zinc:  <span style={{fontWeight: '700',color:'Teal'}}>z</span></li>
+                       <li>Copper:  <span style={{fontWeight: '700',color:'Fuchsia'}}>c</span></li>
+                       <li>Ferrous:  <span style={{fontWeight: '700',color:'Indianred'}}>fe</span></li>
                        </ul>
                     </div>
                 </div>

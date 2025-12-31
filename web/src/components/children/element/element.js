@@ -20,6 +20,9 @@ const ptmshort ={
 "S-palmitoyl_cysteine":'pa',
 "Hydroxyproline":'Hy',
 "Hydroxylysine":'Hy',
+"Zinc": "z",
+"Copper": "c",
+"Ferrous": "fe",
 };
 
 const colormap={

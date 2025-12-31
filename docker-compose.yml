@@ -40,20 +40,20 @@ services:
     networks:
       - my-network
     
-  web:
-    build: ./web
-    image: yongfangqin/musitedeep_web:2.1
-    restart: always
-    expose: 
-      - 3333
-    ports:
-      - '127.0.0.1:3333:3333'
-    networks:
-      - my-network
-    depends_on:
-      - server
-      - ion
-    command: sh -c "export PORT=3333 && npm start"
+  # web:
+  #   build: ./web
+  #   image: yongfangqin/musitedeep_web:2.1
+  #   restart: always
+  #   expose: 
+  #     - 3333
+  #   ports:
+  #     - '127.0.0.1:3333:3333'
+  #   networks:
+  #     - my-network
+  #   depends_on:
+  #     - server
+  #     - ion
+  #   command: sh -c "export PORT=3333 && npm start"
 
 networks:
   my-network:
