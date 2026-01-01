@@ -258,34 +258,6 @@ componentDidMount = ()=>
   // will be executed even if the component is not present anymore. 
   clearInterval(this.interval);
   }
-  
-
-
-//现在不需要了，在componentDidUpdate里第一次就设置了 read及checkspace。
-//shouldComponentUpdate = nextProps => {
-//    
-//    console.log("in shouldcomponentupdate"); //not a problem
-//    if(nextProps.userId !== this.props.userId){
-//      console.log("userID change");
-//      this.handleRead();
-//      this.handleCheckSpace();
-//    }
-//    if(nextProps.showProfile && !this.props.showProfile){
-//      console.log("showprofile change");
-//      this.handleCheckSpace();
-//      
-//      
-//    }
-//    //console.log(nextProps.space, this.props.space)
-//    if(nextProps.space !== this.props.space){
-//      console.log("space change");
-//      //this.handleRead();//外部的导致space变了，也不需要读job
-//      this.handleCheckSpace();
-//    }
-//    
-//    
-//    return true;
-//  }
 
 	render(){
 		let records = this.state.records;

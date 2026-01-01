@@ -110,6 +110,7 @@ body{
   position:absolute;
   top:0;    
 }
+
 .predict{
 	/*position: absolute;*/
 	height: auto;
@@ -246,9 +247,6 @@ list-style-type: none;
   display: block;
 }
 .main footer{
-    /*position: absolute;
-	bottom: 0;*/
-	/*background-color: #d7dbdd;*/
     border-top:1px solid #d7dbdd;
 	width: 100%;
   	position: relative;

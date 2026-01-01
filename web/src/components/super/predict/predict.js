@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { type ElementConfig } from 'react';
+import { ElementConfig } from 'react';
 //import EmojiIcon from '@atlaskit/icon/glyph/emoji';
 import $ from 'jquery';
 import style from './predict.module.css';
@@ -33,33 +33,6 @@ const modeloptions = [
 ];
 
 
-//const DropdownIndicator = (
-//  props: ElementConfig<typeof components.DropdownIndicator>
-//) => {
-//  return (
-//    <components.DropdownIndicator {...props}>
-//    </components.DropdownIndicator>
-//  );
-//};
-//
-//const customStyles = {
-//  option: (provided, state) => ({
-//    ...provided,
-//    //borderBottom: '2px dotted green',
-//    color: state.isSelected ? 'yellow' : 'black',
-//    backgroundColor: state.isSelected ? 'green' : 'white'
-//    
-//  }),
-//  control: (provided) => ({
-//    ...provided,
-//    marginTop: "0%",
-//    marginLeft: "5%",
-//    marginRight: "5%",
-//    display:'inline-block',
-//    width:'80%'
-//  })
-//}
-
 class Predict extends React.Component{
 
 	constructor(props){
@@ -68,23 +41,9 @@ class Predict extends React.Component{
             pasted:true,//默认先展示paste 的输入数据模式
 			reversed: false,//默认不展示upload页面
             reversedsubmitted: false,//默认upload的submit是空。
-            //modelOptions: null
 		}
 	}
   
-  //changeModel = modelOptions => {
-  //this.setState({modelOptions:modelOptions});
-  //console.log('Option selected:',modelOptions);
-  //}
-  
-	/*turnToUploadSubmitted = () => {
-		this.setState({
-            pasted:false,
-			reversed: false,
-            reversedsubmitted:true
-		})
-	}*/
-
 	render(){
         
 		return (
@@ -111,7 +70,7 @@ class Predict extends React.Component{
                                            changeInput = {this.props.changeInput} 
                                            handleClick = {this.props.handlePredictSeq} 
                                            turnToUpload = {this.props.turnToUpload}/>
- 		  					    <File  reversed = {this.props.reversed} onDrop = {this.props.onDrop} turnToInput = {this.props.turnToInput}/>
+ 		  					    <File reversed = {this.props.reversed} onDrop = {this.props.onDrop} turnToInput = {this.props.turnToInput}/>
                                 <FileSuccess reversed = {this.props.reversed} recievedfile= {this.props.recievedfile} reversedsubmitted = {this.props.reversedsubmitted} uploadpredict = {this.props.uploadpredict} turnToInput = {this.props.turnToInput} turnToUpload = {this.props.turnToUpload}/>
  		  				        <Jobsubmitted jobsubmit = {this.props.jobsubmit} 
                                                turnToInput = {this.props.turnToInput} 
@@ -131,20 +90,4 @@ class Predict extends React.Component{
 
 
 export default Predict
-
-
-//  <div className = {style.options}>
-//      <div className={style.button}>Please select a prediction model:
-//      </div>
-//      <div className= {style.select}>
-//          <MySelect isMulti  
-//              options={modeloptions} 
-//              closeMenuOnSelect={true}  
-//              value = {this.props.modelOptions} 
-//              defaultValue={[modeloptions[0]]}  
-//              onChange = {this.props.changeModel}
-//              allowSelectAll={true}
-//              />
-//      </div>
-//  </div>
 

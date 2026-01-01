@@ -379,7 +379,7 @@ class Help extends React.Component{
                          <table border="0">
                          <tbody>
                          <tr><th>ID</th><th>Position</th><th>Residue</th><th>PTMscores</th><th>Cutoff=0.5</th></tr>
-                         <tr><th>>sp|P97756|KKCC1_RAT Calcium/calmodulin-dependent protein kinase</th></tr>
+                         <tr><th>&gt;sp|P97756|KKCC1_RAT Calcium/calmodulin-dependent protein kinase</th></tr>
                          <tr><th>sp|P97756|KKCC1_RAT</th><th>3</th>  <th>R</th>  <th>Methylarginine:0.026</th>                                   <th>None</th></tr>
                          <tr><th>sp|P97756|KKCC1_RAT</th><th>4</th>  <th>S</th>  <th>Phosphoserine:0.847;O-linked_glycosylation:0.096</th>       <th>Phosphoserine:0.847</th></tr>
                          <tr><th>sp|P97756|KKCC1_RAT</th><th>5</th>  <th>P</th>  <th>Hydroxyproline:0.662</th>                                   <th>Hydroxyproline:0.662</th></tr>
@@ -391,7 +391,7 @@ class Help extends React.Component{
                          <tr><th>sp|P97756|KKCC1_RAT</th><th>19</th><th>R</th><th>Methylarginine:0.016</th><th>None</th></tr>
                          <tr><th>sp|P97756|KKCC1_RAT</th><th>24</th><th>S</th><th>Phosphoserine:0.509;O-linked_glycosylation:0.047</th><th>Phosphoserine:0.509</th></tr>
                          <tr><th>...</th><th>...</th><th>...</th><th>...</th></tr>
-                         <tr><th>>sp|A9QT41|NEMO_PIG NF-kappa-B essential modulator</th></tr>
+                         <tr><th>&gt;sp|A9QT41|NEMO_PIG NF-kappa-B essential modulator</th></tr>
                          <tr><th>sp|A9QT41|NEMO_PIG</th><th>2</th><th>S</th><th>Phosphoserine:0.103;O-linked_glycosylation:0.052</th><th>None</th></tr>
                          <tr><th>sp|A9QT41|NEMO_PIG</th><th>3</th><th>R</th><th>Methylarginine:0.041</th><th>None</th></tr>
                          <tr><th>sp|A9QT41|NEMO_PIG</th><th>4</th><th>T</th><th>Phosphothreonine:0.627;O-linked_glycosylation:0.041</th><th>Phosphothreonine:0.627</th></tr>
@@ -406,7 +406,7 @@ class Help extends React.Component{
                     </div>
                     </div>
                     
-                    <p>Except for the first line of the file, which is the header, for each sequence, the first line is the sequence title (start with ">"), 
+                    <p>Except for the first line of the file, which is the header, for each sequence, the first line is the sequence title (start with {">"}), 
                        the following lines are the prediction results of the potential PTM positions, 
                        each line contains 5 columns and separated by the tab character ("\t"):
                     </p>
@@ -464,7 +464,7 @@ class Help extends React.Component{
                 </p>
                 <div className={style.textholder}>
                 <div className={style.textcontent} style={{fontSize:'11px'}}>
-                        <p>>sp|P97756|KKCC1_RAT Calcium/calmodulin-dependent protein kinase kinase 1 OS=Rattus norvegicus GN=Camkk1 PE=1 SV=1</p>
+                        <p>&gt;sp|P97756|KKCC1_RAT Calcium/calmodulin-dependent protein kinase kinase 1 OS=Rattus norvegicus GN=Camkk1 PE=1 SV=1</p>
                         <p>MERSPAVCCQDPRAELVERVAAISVAHLEEAEEGPEPASNGVDPPPRARAASVIPGSASRPTPVRPSLSARKFSLQERPAGSCLEAQVGPYSTGPASHMSPRAWRRPTIESHHVAISDTEDCVQLNQYKLQSEIGKGAYGVVRLAYNEREDRHYAMKVLSKKKLLKQYGFPRRPPPRGSQAPQGGPAKQLLPLERVYQEIAILKKLDHVNVVKLIEVLDDPAEDNLYLVFDLLRKGPVMEVPCDKPFPEEQARLYLRDIILGLEYLHCQKIVHRDIKPSNLLLGDDGHVKIADFGVSNQFEGNDAQLSSTAGTPAFMAPEAISDTGQSFSGKALDVWATGVTLYCFVYGKCPFIDEYILALHRKIKNEAVVFPEEPEVSEELKDLILKMLDKNPETRIGVSDIKLHPWVTKHGEEPLPSEEEHCSVVEVTEEEVKNSVKLIPSWTTVILVKSMLRKRSFGNPFEPQARREERSMSAPGNLLLKEGCGEGGKSPELPGVQEDEAAS</p>
                         <p>P97756 (100)	67:Phosphoserine;74:Phosphoserine;78:Asymmetric dimethylarginine;100:Phosphoserine;108:Phosphothreonine;458:Phosphoserine;475:Phosphoserine;492:Phosphoserine;</p>
                         <p>MERSPAVCCQDPRAELVERVAAISVAHLEEAEEGPEPASNGVDPPPRARAASVIPGSASRPTPVRPSLSARKFSLQERPAGSCLEAQVGPYSTGPASHMSPRAWRRPTIESHHVAISDTEDCVQLNQYKLQSEIGKGAYGVVRLAYNEREDRHYAMKVLSKKKLLKQYGFPRRPPPRGSQAPQGGPAKQLLPLERVYQEIAILKKLDHVNVVKLIEVLDDPAEDNLYLVFDLLRKGPVMEVPCDKPFPEEQARLYLRDIILGLEYLHCQKIVHRDIKPSNLLLGDDGHVKIADFGVSNQFEGNDAQLSSTAGTPAFMAPEAISDTGQSFSGKALDVWATGVTLYCFVYGKCPFIDEYILALHRKIKNEAVVFPEEPEVSEELKDLILKMLDKNPETRIGVSDIKLHPWVTKHGEEPLPSEEEHCSVVEVTEEEVKNSVKLIPSWTTVILVKSMLRKRSFGNPFEPQARREERSMSAPGNLLLKEGCGEGGKSPELPGVQEDEAAS</p>

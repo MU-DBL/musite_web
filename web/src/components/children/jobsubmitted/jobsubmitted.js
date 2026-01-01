@@ -13,8 +13,6 @@ class Jobsubmitted extends React.Component {
 
  handleurl = (event) => {
     let out = 'http://www.musite.net/job/'+this.props.userId+'/'+this.props.jobId //replace http://18.223.55.81:5000 with local host
-    //let out = 'http://localhost:3333/job/'+this.props.userId+'/'+this.props.jobId //replace http://18.223.55.81:5000 with local host
-    //console.log(this.props.model);
     window.open(out);
   }
   

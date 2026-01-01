@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactRouter from './router/Router';
+import { BrowserRouter } from 'react-router-dom'; // Add this
+import App from './App.js';
 import registerServiceWorker from './registerServiceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(<ReactRouter />, document.getElementById('root'));
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>, 
+  document.getElementById('root')
+);
 registerServiceWorker();
 
 if (!window.location.host.startsWith("www")){

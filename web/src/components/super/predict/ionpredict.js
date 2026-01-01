@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { type ElementConfig } from 'react';
+import { ElementConfig } from 'react';
 //import EmojiIcon from '@atlaskit/icon/glyph/emoji';
 import $ from 'jquery';
 import style from './predict.module.css';
