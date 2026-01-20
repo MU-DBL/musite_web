@@ -4,20 +4,20 @@ import {
   Routes,
   BrowserRouter
 } from 'react-router-dom'; 
-import Main from '../main';
-import Job from '../job';
-import Table3D from '../show3dtable';
-import Ptm from '../components/super/ptm/ptm';
-import Contact from '../components/super/contact/contact';
-import Api from '../components/super/api/api';
-import Help from '../components/super/help/help';
-import Profile from '../components/super/profile/profile';
+import Home from './components/pages/home/home';
+import Job from './components/super/job';
+import Table3D from './components/super/show3dtable';
+import Ptm from './components/pages/ptm/ptm';
+import Contact from './components/pages/contact/contact';
+import Api from './components/pages/api/api';
+import Help from './components/pages/help/help';
+import JobHistory from './components/pages/profile/JobHistory';
 
 //React的路由，不同规则的path对应不同的组件
 const ReactRouter = () => (
   	<Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<JobHistory />} />
         <Route path="/ptm" element={<Ptm />} />
         <Route path="/api" element={<Api />} />
         <Route path="/contact" element={<Contact />} />

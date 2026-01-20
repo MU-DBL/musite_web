@@ -43,13 +43,13 @@ class Header extends React.Component {
                 <Nav.Link>Help</Nav.Link>
               </LinkContainer>
 
-              <Nav.Link
+              {/* <Nav.Link
                 href="http://gene.rnet.missouri.edu/musite"
                 target="_blank"
                 rel="noreferrer"
               >
                 Musite (SVM version)
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
           </Navbar.Collapse>
         </Container>

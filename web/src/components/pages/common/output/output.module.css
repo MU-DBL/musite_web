@@ -403,3 +403,23 @@ div.curvalue{
   margin: 0 10px;
 }
 
+.container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left {
+  flex: 1;
+  min-width: 0;
+  width: 800px;
+}
+
+.right {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

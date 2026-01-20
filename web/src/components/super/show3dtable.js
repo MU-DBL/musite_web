@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import $ from 'jquery';
-import Header from './components/super/header/header';
-import Output from './components/super/output/output';
-import Footer from './components/super/footer/footer';
+import Header from '../pages/common/header/header';
+import Output from '../pages/common/output/output';
+import Footer from '../pages/home/footer/footer';
 import './show3dtable.module.css';
 import style from './show3dtable.module.css';
 

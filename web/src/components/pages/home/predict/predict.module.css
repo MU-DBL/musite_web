@@ -10,6 +10,8 @@
 .content{
   /*position:absolute;*/
   top:0;
+  padding-left: 2%;
+  padding-right: 2%;
   margin-top:8px;  
 }
 
@@ -25,14 +27,7 @@
   border:0;
   width: 90vw;
   min-width:200px;
-  /*padding-bottom:0.5vw;*/
   font-size:0.75rem;
-  
-}
-
-.options .select div{
-    z-index:2000;
-    
 }
 
 

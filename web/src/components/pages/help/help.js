@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import style from './help.module.css';
 import Ptm from '../ptm/ptm';
-import Output from '../output/output';
-import Profile from '../profile/profile';
+import Output from '../common/output/output';
+import Profile from '../../super/profile/profile';
 import $ from 'jquery';
 import swal from 'sweetalert';
 class Help extends React.Component{
