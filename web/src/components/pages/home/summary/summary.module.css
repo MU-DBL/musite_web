@@ -1,3 +1,5 @@
+
+
 @keyframes start{
 	from{transform: translate(0, 100px); opacity: 0}
 	to{transform: translate(0, 0); opacity: 1;}
@@ -27,117 +29,168 @@
 			  transform: rotateX(-180deg);
 	}
 }
-  
-.summary{
-	display: table;
-	line-height: normal;
-	position: relative;
-	/*height: 26vh;*/
-	width: 100vw;
-	min-height: 50px;
-	letter-spacing: 1px;
-	background-color: #e9ecef;
-	z-index: 1;
-    padding-top: 50px;
+.titleSection {
+    background-color: #f8f9fa;
+    padding-top: 30px;  
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.visitors{
-	/*position: absolute;
-	bottom: 30px;
-    left: 15px;*/
-    margin-top:2px;
-    margin-left:15px;
-	color: #212529;
-	font-size: 12px; 
-
+.titleColumn {
+    text-align: center;  /* Centers all content in column */
 }
-.visitors span{    
-    margin-right:6px;
-
+.titleRow {
+    align-items: center;
 }
 
-.num_protein{
-	/*position: absolute;
-	bottom: 16px;
-    left: 15px;*/
-    margin-top:2px;
-	margin-left:15px;
-    color: #212529;
-	font-size: 12px;
+/* 1 rem is 16 pixel just fyi, played around with styling a bit but looks good on my screen */
 
-}
-.num_protein span{
-    
-    margin-right:6px;
+.mainTitle {
+    font-size: 2.0rem;
+    font-weight: 700;
+    color: #1e466e;
+    margin-bottom: 0.5rem;
 }
 
-.num_sites{
-	/*position: absolute;
-	bottom: 2px;
-	
-    left: 15px;
-	*/
-    color: #212529;
-	font-size: 12px;
-    /*margin-right:0.5rem;*/
-    margin:5px 0px 5px 15px;
-
-	
+.subtitle {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.5;
 }
 
-.num_sites span{
-    margin-right:6px;
-    
+
+.mapContainer {
+    width: 100%;
+    height: 170;
+    position: relative;
+    background: rgba(141, 134, 134, 0.747);
+    border-radius: 8px;
 }
-.visitorsHide{
+
+.compactMapWidget {
+    position: relative;
+    top: 120px;
+    right: 50px;
+    width: 380px;
+    z-index: 100;
+}
+
+.mapContainer {
+    width: 100%;
+    height: 170px;
+    position: relative;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    overflow: visible;
+}
+
+.mapContainer :global(.leaflet-container) {
+    border-radius: 8px;
+    cursor: default !important;
+}
+
+.mapContainer :global(.leaflet-control-zoom),
+.mapContainer :global(.leaflet-control-attribution),
+.mapContainer :global(.leaflet-popup-pane),
+.mapContainer :global(.leaflet-tooltip-pane) {
+    display: none !important;
+}
+
+.mapContainer :global(.leaflet-interactive) {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+.mapContainer :global(.leaflet-marker-icon) {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+.mapContainer :global(.leaflet-tile-pane) {
+    pointer-events: none !important;
+}
+
+.statsOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 1000;
+    padding: 5px;
+    width: 90%;
+}
+
+.statLine {
+    font-size: 10px;
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+    margin: 2px 0;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.statNumber {
+    text-align: center;
+    margin: 1px 0 5px 0;
+}
+
+.flipit {
+    display: inline-block;
+    color: rgb(68, 97, 150);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    animation: flip-horizontal-bottom 2s ease-in-out 1s 2;
+    -webkit-animation: flip-horizontal-bottom 2s ease-in-out 1s 2;
+}
+
+.visitorsHide {
 	display: none;
 }
 
-.holder{
-	display: table-cell;
-	width: 100vw;
-    padding-top:1vw;
-	vertical-align: middle;
-}
-.text{
-	margin: auto;
-	max-width: 1100px;
-	padding: 0 15px;
-    font-size:1.2rem;
-}
-.text p{
-	position: relative;
-	animation: start 2s ease-out;
-	-webkit-animation: start 2s ease-out;
-	text-align: center;
-	color: #212529;
+
+/*768px and below */
+@media (max-width: 768px) {
+    .compactMapWidget {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+    }
 }
 
-
-.flipit{
-	/* border-style: dotted dashed solid double; */
-	/* border-style: inset;
-	border-width: 2px;
-	border-color: rgb(79, 89, 131); */
-	/*text-decoration: underline;*/
-	display: inline-block;
-	*display:inline;
-	color: rgb(68, 97, 150);
-    background-color:rgb(255,255,255);
-	animation:flip-horizontal-bottom 2s ease-in-out 1s 2;
-	-webkit-animation: flip-horizontal-bottom 2s ease-in-out 1s 2; 
+/*480px and below */
+@media (max-width: 480px) {
+    .compactMapWidget {
+        width: calc(100% - 20px);
+        margin: 10px;
+    }
+    
+    .mapContainer {
+        height: 200px;
+    }
+    
+    .statLine {
+        font-size: 11px;
+    }
+    
+    .flipit {
+        font-size: 18px;
+        padding: 3px 8px;
+    }
 }
-
-  
- /* .contenter{
-	
- } */
-
-/*.center{
-	width: 100px;
-	height: 100px;
-    padding: 20 15px;
-    margin-top: 20px;
-    margin-left: 50%;
-  }
- */ 
