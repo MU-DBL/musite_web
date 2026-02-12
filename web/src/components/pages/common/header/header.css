@@ -1,12 +1,10 @@
-/* Flat dark gray background */
 .navbar.bg-dark {
-	background-color: #3a4556 !important;
+	background-color: #112d57 !important;
 	box-shadow: none;
 	padding: 0.5rem 0;
 	border-bottom: none;
 }
 
-/* Container alignment */
 .navbar .container {
 	margin-left: 0 !important;
 	padding-left: 1rem;
@@ -17,8 +15,10 @@
 	justify-content: flex-start;
 }
 
-/* Simple white brand text */
 .navbar-brand {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
 	font-weight: 700;
 	font-size: 1.1rem;
 	transition: opacity 0.2s ease;
@@ -30,19 +30,29 @@
 	opacity: 0.85;
 }
 
-/* Nav items container - left aligned */
+.navbar-logo {
+	height: 32px;
+	width: auto;
+	display: block;
+}
+
+.navbar-brand-text {
+	color: #ffffff;
+	font-weight: 700;
+	font-size: 1.1rem;
+}
+
 .navbar-nav {
 	margin-left: 0 !important;
 	margin-right: 0 !important;
 	flex-direction: row;
 }
 
-/* Simple nav links */
 .navbar-nav .nav-link {
 	color: #ffffff !important;
 	font-weight: 600;
-	font-size: small;
-	padding: 0.5rem 1rem !important;
+	font-size: medium;
+	padding: 0.5rem 2rem !important;
 	margin: 0 0.1rem;
 	transition: opacity 0.2s ease;
 }
@@ -59,7 +69,6 @@
 	opacity: 1;
 }
 
-/* Dropdown styling */
 .dropdown-toggle {
 	display: flex;
 	align-items: center;
@@ -158,6 +167,15 @@
 
 	.navbar-brand {
 		margin-right: auto;
+	}
+	
+	/* Adjust logo size on mobile */
+	.navbar-logo {
+		height: 28px;
+	}
+	
+	.navbar-brand-text {
+		font-size: 1rem;
 	}
 }
 
