@@ -56,6 +56,10 @@ const Header: React.FC = () => {
             <LinkContainer to="/help">
               <Nav.Link>Help</Nav.Link>
             </LinkContainer>
+
+            <LinkContainer to="/dashboard">
+              <Nav.Link>Analytics</Nav.Link>
+            </LinkContainer>            
           </Nav>
         </Navbar.Collapse>
       </Container>

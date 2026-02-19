@@ -25,8 +25,6 @@ const ReactRouter = () => (
         <Route path="/help" element={<Help />} />
         <Route path="/job/:UserID/:JobID" element={<Job />} />
         <Route path="/show3dtable/:show3dID" element={<Table3D />} />
-
-        {/*for testing atm*/}
         <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
 );

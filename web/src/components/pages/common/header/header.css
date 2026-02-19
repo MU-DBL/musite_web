@@ -1,7 +1,7 @@
 .navbar.bg-dark {
-	background-color: #112d57 !important;
+	background-color: #163e64 !important;
 	box-shadow: none;
-	padding: 0.5rem 0;
+	padding: 0.3rem 0;
 	border-bottom: none;
 }
 
@@ -18,12 +18,12 @@
 .navbar-brand {
 	display: flex;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 1.3rem;
 	font-weight: 700;
 	font-size: 1.1rem;
 	transition: opacity 0.2s ease;
 	color: #ffffff !important;
-	margin-right: 2rem;
+	margin-right: 1.3rem;
 }
 
 .navbar-brand:hover {
@@ -34,6 +34,7 @@
 	height: 32px;
 	width: auto;
 	display: block;
+	margin-left: 0.6rem;
 }
 
 .navbar-brand-text {
@@ -50,17 +51,17 @@
 
 .navbar-nav .nav-link {
 	color: #ffffff !important;
-	font-weight: 600;
+	font-weight: 550;
 	font-size: medium;
-	padding: 0.5rem 2rem !important;
+	padding: 0.5rem 0.5rem !important;
 	margin: 0 0.1rem;
 	transition: opacity 0.2s ease;
 }
 
 .navbar-nav .nav-link:hover {
-	color: #ffffff !important;
-	background-color: transparent;
-	opacity: 0.8;
+    color: #ffffff !important;
+    background-color: transparent;
+    border-bottom: 2px solid #ffffff;  
 }
 
 .navbar-nav .nav-link.active {
