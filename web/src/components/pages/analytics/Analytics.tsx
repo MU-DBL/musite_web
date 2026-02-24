@@ -332,6 +332,13 @@ const Dashboard: React.FC = () => {
           }
         }
 
+        //specific visit count for the pins
+        const countryVisits: { [key: string]: number } = {};
+        markers.forEach((m) => {
+          const country = m.title || 'No Data';
+          countryVisits[country] = (countryVisits[country] || 0) + 1;
+        });        
+
         //marking the markers on the map, i beleive this is licenced to be free to use
         if (markers.length > 0 && mapInstance.current) {
           const group = L.featureGroup();
@@ -348,8 +355,15 @@ const Dashboard: React.FC = () => {
                 shadowSize: [41, 41]
               })
             });
-            
-            if (m.title) marker.bindPopup(String(m.title));
+          
+          //hovered toolip for country visits
+          const country = m.title
+          const visitCount = countryVisits[country] || 1;
+          marker.bindTooltip(`${country}: ${visitCount} visit${visitCount !== 1 ? 's' : ''}`, {
+            permanent: false, 
+            direction: 'top',
+            offset: [0, -35]
+          });            
             marker.addTo(group);
           });
           
@@ -404,11 +418,6 @@ const Dashboard: React.FC = () => {
         <div className={style.card}>
           <p className={style.metricLabel}>Total Visits</p>
           <p className={style.metricValue}>{metrics.totalVisits.toLocaleString()}</p>
-        </div>
-        
-        <div className={style.card}>
-          <p className={style.metricLabel}>Unique Visitors</p>
-          <p className={style.metricValue}>{metrics.uniqueVisitors.toLocaleString()}</p>
         </div>
       </div>
 
