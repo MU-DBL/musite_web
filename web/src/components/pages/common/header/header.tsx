@@ -57,9 +57,9 @@ const Header: React.FC = () => {
               <Nav.Link>Help</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to="/dashboard">
+            {/* <LinkContainer to="/dashboard">
               <Nav.Link>Analytics</Nav.Link>
-            </LinkContainer>            
+            </LinkContainer>             */}
           </Nav>
         </Navbar.Collapse>
       </Container>
