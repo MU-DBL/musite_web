@@ -13,19 +13,21 @@
   padding-left: 2%;
   padding-right: 2%;
   margin-top:8px;  
+  overflow: visible;
 }
 
 
 .options{
 	margin-top: 5px;
 	padding: 5px 5px 5px 5px;
+	overflow: visible;
 }
 
 
 .options .select
 { 
   border:0;
-  width: 90vw;
+  width :100%;
   min-width:200px;
   font-size:0.75rem;
 }
