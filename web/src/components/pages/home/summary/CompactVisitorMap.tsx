@@ -16,10 +16,10 @@ const FAKE_PINS = [
   { lat: 45.4,  lng: -75.7  }, // Canada
   { lat: 49.2,  lng: -123.1 }, // Vancouver
   { lat: 19.4,  lng: -99.1  }, // Mexico City
-  { lat: -23.5, lng: -46.6  }, // Brazil
-  { lat: 4.7,   lng: -74.0  }, // Colombia
-  { lat: -34.6, lng: -58.4  }, // Argentina
-  { lat: -12.0, lng: -77.0  }, // Peru
+  // { lat: -23.5, lng: -46.6  }, // Brazil
+  // { lat: 4.7,   lng: -74.0  }, // Colombia
+  // { lat: -34.6, lng: -58.4  }, // Argentina
+  // { lat: -12.0, lng: -77.0  }, // Peru
   { lat: 51.5,  lng: -0.1   }, // UK
   { lat: 48.8,  lng: 2.3    }, // France
   { lat: 52.5,  lng: 13.4   }, // Germany
@@ -38,28 +38,28 @@ const FAKE_PINS = [
   { lat: 12.9,  lng: 77.6   }, // India (Bangalore)
   { lat: 39.9,  lng: 116.4  }, // China (Beijing)
   { lat: 31.2,  lng: 121.5  }, // China (Shanghai)
-  { lat: 22.3,  lng: 114.2  }, // Hong Kong
-  { lat: 35.7,  lng: 139.7  }, // Japan (Tokyo)
-  { lat: 34.7,  lng: 135.5  }, // Japan (Osaka)
-  { lat: 37.6,  lng: 127.0  }, // South Korea
-  { lat: 1.3,   lng: 103.8  }, // Singapore
-  { lat: 13.7,  lng: 100.5  }, // Thailand
-  { lat: 21.0,  lng: 105.8  }, // Vietnam
-  { lat: -6.2,  lng: 106.8  }, // Indonesia
-  { lat: -33.9, lng: 151.2  }, // Australia (Sydney)
-  { lat: -37.8, lng: 145.0  }, // Australia (Melbourne)
-  { lat: -36.9, lng: 174.8  }, // New Zealand
-  { lat: 6.5,   lng: 3.4    }, // Nigeria
-  { lat: -1.3,  lng: 36.8   }, // Kenya
-  { lat: -26.2, lng: 28.0   }, // South Africa
-  { lat: 30.0,  lng: 31.2   }, // Egypt
-  { lat: 14.7,  lng: -17.4  }, // Senegal
+  // { lat: 22.3,  lng: 114.2  }, // Hong Kong
+  // { lat: 35.7,  lng: 139.7  }, // Japan (Tokyo)
+  // { lat: 34.7,  lng: 135.5  }, // Japan (Osaka)
+  // { lat: 37.6,  lng: 127.0  }, // South Korea
+  // { lat: 1.3,   lng: 103.8  }, // Singapore
+  // { lat: 13.7,  lng: 100.5  }, // Thailand
+  // { lat: 21.0,  lng: 105.8  }, // Vietnam
+  // { lat: -6.2,  lng: 106.8  }, // Indonesia
+  // { lat: -33.9, lng: 151.2  }, // Australia (Sydney)
+  // { lat: -37.8, lng: 145.0  }, // Australia (Melbourne)
+  // { lat: -36.9, lng: 174.8  }, // New Zealand
+  // { lat: 6.5,   lng: 3.4    }, // Nigeria
+  // { lat: -1.3,  lng: 36.8   }, // Kenya
+  // { lat: -26.2, lng: 28.0   }, // South Africa
+  // { lat: 30.0,  lng: 31.2   }, // Egypt
+  // { lat: 14.7,  lng: -17.4  }, // Senegal
 ];
 
 function makeCircleIcon() {
   return L.divIcon({
     className: '',
-    html: '<div style="width:10px;height:10px;background:#2563eb;border-radius:50%;border:1px solid #fff;box-shadow:0 0 3px rgba(0,0,0,0.4);"></div>',
+    html: '<div style="width:10px;height:10px;background:#445196;border-radius:50%;border:1px solid #fff;box-shadow:0 0 3px rgba(0,0,0,0.4);"></div>',
     iconSize: [10, 10],
     iconAnchor: [5, 5],
     popupAnchor: [0, -8],

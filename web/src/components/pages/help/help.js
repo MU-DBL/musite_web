@@ -283,7 +283,7 @@ class Help extends React.Component{
       <div>
         <div className = "container">
             <div className={style.help}>
-              <h3 className="text-center" style={{marginTop:'10px'}}>Tutorial</h3>
+              <h2 style={{ textAlign: 'center' }}>Tutorial</h2>
               <div>
                 <p className="text-left" style={{marginTop:'10px',fontSize:'14px'}}>Browser compatibility:</p>
                 <table className={style.browser}>

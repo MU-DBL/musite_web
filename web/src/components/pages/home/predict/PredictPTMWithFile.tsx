@@ -18,7 +18,7 @@ const PredictPTMWithFile: React.FC<PredictPTMWithIpuProps> = ({ ML, PTM }) => {
   const [fileSubmitted, setfileSubmitted] = useState<boolean>(false);
 
   const userId = useUserId();
-  var jobSubmittedTime: string = "";
+  const [jobSubmittedTime, setJobSubmittedTime] = useState<string>("");
   // Dropzone hook
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: { ".fasta": [] }, // only allow .fasta files
@@ -39,14 +39,14 @@ const PredictPTMWithFile: React.FC<PredictPTMWithIpuProps> = ({ ML, PTM }) => {
       }
 
       // Set time for the current job
-      jobSubmittedTime = new Date().toISOString();
-      
+      const currentJobTime = new Date().toISOString();
+      setJobSubmittedTime(currentJobTime);
 
       // Prepare FormData
       const data = new FormData();
-      data.append('file', selectedFile); 
+      data.append('file', selectedFile);
       data.append('userId', userId);
-      data.append('time', jobSubmittedTime);
+      data.append('time', currentJobTime);
 
       // Upload file using axios
       axios.post('/uploadcheck', data, {
@@ -137,12 +137,13 @@ const PredictPTMWithFile: React.FC<PredictPTMWithIpuProps> = ({ ML, PTM }) => {
           confirmButtonText: "Got it!",
         });
       } else if (data === "submitted") {
-        setfileSubmitted(true)
-        Swal.fire({
-          text: "Your job has been submitted successfully!",
-          icon: "success",
-          confirmButtonText: "Got it!",
-        });
+        setfileSubmitted(true);
+        setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }), 50);
+        // Swal.fire({
+        //   text: "Your job has been submitted successfully!",
+        //   icon: "success",
+        //   confirmButtonText: "Got it!",
+        // });
       } else {
         Swal.fire({
           text: data,
@@ -162,7 +163,7 @@ const PredictPTMWithFile: React.FC<PredictPTMWithIpuProps> = ({ ML, PTM }) => {
   };
 
   const handleurl = () => {
-    let out = 'http://www.musite.net/job/'+ userId+'/'+ jobSubmittedTime 
+    let out = window.location.origin + '/job/' + userId + '/' + jobSubmittedTime
     window.open(out);
   }
 
@@ -170,47 +171,41 @@ const PredictPTMWithFile: React.FC<PredictPTMWithIpuProps> = ({ ML, PTM }) => {
     <div>
       <div
         {...getRootProps()}
-        style={{
-          border: "2px dashed #888",
-          padding: "30px",
-          textAlign: "center",
-          cursor: "pointer",
-          marginBottom: "10px",
-        }}
+        className={isDragActive ? `${style.dropzone} ${style.dropzoneActive}` : style.dropzone}
       >
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p>Drop the file here ...</p>
+          <p className={style.dropzoneDrag}>Drop the file here ...</p>
         ) : (
           <div>
-            <img src={img} alt="file icon" width={150} style={{ marginRight: "8px" }} />
-            <p>Drop the file here or click to upload (only support the FASTA format).</p>
-            <p>Your files and results will be saved on our server for 72 hours. One user is allotted to process up to 5 jobs at the same time.</p>
-
+            <img src={img} alt="file icon" className={style.dropzoneIcon} />
+            <p className={style.dropzoneText}>Drop the file here or click to upload (only .fasta format supported).</p>
+            <p className={style.dropzoneSubText}>Files and results are saved on our server for 72 hours. Up to 5 jobs at the same time per user.</p>
           </div>
         )}
-        <br />
         {uploadedFileName && (
-          <div style={{ marginTop: "10px" }}>
-            Selected file: {uploadedFileName}, please click "Start Prediction" to submit a predicton job.
+          <div className={style.fileSelected}>
+            Selected: <b>{uploadedFileName}</b> &mdash; click "Start Prediction" to submit.
           </div>
         )}
       </div>
-
-      <button className={style.submit} onClick={handleUploadPredict}>
-        Start Prediction
-      </button>
-      
+      <div>
+        <button className={style.submit} onClick={handleUploadPredict}>
+          Start Prediction
+        </button>
+      </div>
       {fileSubmitted && (
-       <div>
-              <p className = {style.instruction}>Your job (ID: <b>{jobSubmittedTime}</b>) has been submitted, 
-              which can be accessed by the following <b>URL</b> or refer to <b>USER JOB HISTORY</b>:<br /><br />
-              <a id = "joburl" onClick={handleurl}>http://www.musite.net/job/{userId}/{jobSubmittedTime}</a>
-              <br />
-              <br />
-              <span>((Your files and results will be saved on our server for 72 hours. One user is allotted to process up to 5 jobs at the same time.)</span>
-              </p>
-            </div>
+        <div className={style.jobSubmittedCard}>
+          <p className={style.jobSubmittedTitle}>
+            Your job (ID: <b>{jobSubmittedTime}</b>) has been submitted successfully.
+            Access it via the URL below or check <b>Job History</b>:
+          </p>
+          <div className={style.jobSubmittedUrl}>
+            <a onClick={handleurl}>
+              {window.location.origin}/job/{userId}/{jobSubmittedTime}
+            </a>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -28,32 +28,14 @@
 	font-size: 15px;
 }
 
-textarea{
-	box-sizing:border-box;
-	width: 100%;
-	height: 270px;
-	overflow: auto;
-	resize:none;
-  font-size: 15px;
-  border: 1px solid black;
-}
-textarea:focus{
-	outline: none;
-}
-
 .example{
   border: none;
   background-color: #fff;
   cursor: pointer;
   transition: all .2s;
-  color: #0087f7;
+  color:  #163e64;
   margin-left: 10px;
-}
-.example:hover{
-  color: #87e2ff;
-}
-.example:focus{
-  outline: none;
+  font-weight: 500;
 }
 
 .reverse{
@@ -77,31 +59,152 @@ textarea:focus{
 .reverse:hover {
  	/*color: white;*/
  	background: #7aaDf1;
-
 }
 
 .buttonin{
   overflow: hidden;
 }
+
 .submit{
   border: 0;
   cursor: pointer;
-  font-size: 0.75rem;
-  height: 2.5rem;
+  font-size: 0.9rem;
   width: 11rem;
   line-height: 2.5rem;
-  /*padding: 0 1.5rem;*/
   color: white;
-  background: #548Ddf;
-  /*text-transform: uppercase;*/
-  border-radius: .25rem;
-  letter-spacing: .1em;
-  transition: background .2s;
-  float:right;
+  background: #1e466e;
+  border-radius: 6px;
+  letter-spacing: .05em;
+  transition: background .2s, box-shadow .2s, transform .1s;
+  float: right;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(30, 70, 110, 0.25);
 }
-.submit:hover{
- 	background: #7aaDf1;
+
+.submit:hover {
+  background:  #163351;
+  box-shadow: 0 4px 14px rgba(30, 70, 110, 0.35);
+  transform: translateY(-1px);
 }
+
+/* PDB input area */
+.inputLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.pdbTextarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 250px;
+  resize: none;
+  font-size: 1rem;
+  font-family: monospace;
+  border: 1px solid #a0b4cc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #1e466e;
+  background-color: #f7fafd;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.pdbTextarea:focus {
+  outline: none;
+  border-color: #1e466e;
+  box-shadow: 0 0 0 3px rgba(30, 70, 110, 0.12);
+  background-color: #fff;
+}
+
+/* File upload dropzone */
+.dropzone {
+  border: 2px dashed #a0b4cc;
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 12px;
+  background-color: #f7fafd;
+  transition: border-color .2s, background-color .2s;
+}
+
+.dropzone:hover {
+  border-color: #1e466e;
+  background-color: #edf3f9;
+}
+
+.dropzoneActive {
+  border-color: #1e466e;
+  background-color: #ddeaf5;
+}
+
+.dropzoneIcon {
+  width: 60px;
+  margin-bottom: 10px;
+  opacity: 0.75;
+}
+
+.dropzoneText {
+  color: #4a5568;
+  font-size: 0.95rem;
+  margin: 4px 0;
+}
+
+.dropzoneSubText {
+  color: #8a95a3;
+  font-size: 0.82rem;
+  margin: 4px 0;
+}
+
+.dropzoneDrag {
+  color: #1e466e;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.fileSelected {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background-color: #e6f0fa;
+  border: 1px solid #b3cde8;
+  border-radius: 6px;
+  color: #1e466e;
+  font-size: 0.88rem;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.jobUrl {
+  color: #1e466e;
+  text-decoration: underline;
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.jobUrl:hover {
+  color: #163351;
+}
+
+.jobSubmittedCard {
+  margin-top: 60px;
+  padding: 16px 20px;
+  background-color: #edf7ed;
+  border: 1px solid #a3d4a5;
+  border-radius: 8px;
+}
+
+.jobSubmittedUrl {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.jobSubmittedNote {
+  color: #6b7280;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
 /*.reverse{
 	text-decoration: none;
   color: #999;

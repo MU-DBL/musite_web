@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import style from './api.module.css';
 //var __html = require('./predict.html');
 //var template = { __html: __html };
 
@@ -28,14 +27,15 @@ class Api extends React.Component{
     }
 	render(){
 		return (
-                 <div className={style.api}>
-                    <h3>MusiteDeep Web API</h3>
-                    <hr />
-                    <p style={{marginBottom:'20px'}}>We provide Web APIs for automated prediction and homology-based search. We also provide template programs in Python to interpret how to use these APIs.</p>
+                 <div>
+                    <h2 style={{ textAlign: 'center' }}>MusiteDeep Web API</h2>
+                    <div className="page_content">
+
+                    <h6 style={{marginBottom:'20px'}}>We provide Web APIs for automated prediction and homology-based search. We also provide template programs in Python to interpret how to use these APIs.</h6>
                     <p>{`1. Get prediction results for the selected prediction models {models} and sequence {sequence}`}</p>
-                    <p><span style ={{paddingRight:'40px',color:'blue'}}>GET:</span><span>{`http://www.musite.net:5000/musitedeep/{models}/{sequence}`}</span></p>
-                  <button style={{marginTop:'10px'}} className={style.submit} onClick={this.handletemplate1}>Python template</button>
-                  <div className = {this.state.template1? style.code: style.codeHide}>
+                    <p><span style ={{paddingRight:'40px',color:'#1e466e'}}>GET:</span><span>{`http://www.musite.net:5000/musitedeep/{models}/{sequence}`}</span></p>
+                  <button className="btn btn-primary" onClick={this.handletemplate1}>Python template</button>
+                  <div className = {this.state.template1? "code": "codeHide"}>
                   <pre style={{padding:'10px'}}>{`#OS: Ubuntu 16.04.5 LTS
 #Python: Python 3.5 
 import requests
@@ -94,9 +94,9 @@ Example results:
                     </pre>
                   </div>
                   <p style={{marginTop:'20px'}}>{`2. Get homology-based search results for the selected PTM types {ptms} and sequence {sequence}`}</p>
-                  <p><span style ={{paddingRight:'40px',paddingBottom:'20px',color:'blue'}}>GET:</span><span>{`http://www.musite.net:5000/blast/{ptms}/{sequence}`}</span></p>
-                  <button style={{marginTop:'10px'}} className={style.submit} onClick={this.handletemplate2}>Python template</button>
-                  <div className = {this.state.template2? style.code: style.codeHide}>
+                  <p><span style ={{paddingRight:'40px',paddingBottom:'20px',color:'#1e466e'}}>GET:</span><span>{`http://www.musite.net:5000/blast/{ptms}/{sequence}`}</span></p>
+                  <button className="btn btn-primary"  onClick={this.handletemplate2}>Python template</button>
+                  <div className = {this.state.template2? "code": "codeHide"}>
                   <pre style={{padding:'10px'}}>
 {`import requests
 import json
@@ -143,6 +143,7 @@ Example results:
 '''                  
 `}
                   </pre>
+                  </div>
                   </div>
                   </div>
 		)

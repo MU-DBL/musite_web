@@ -1,39 +1,38 @@
 import React, { Component } from 'react';
-import style from './contact.module.css';
 
+class Contact extends React.Component {
 
-class Contact extends React.Component{
-
-	constructor(props){
+	constructor(props) {
 		super(props);
 		this.state = {
 		}
 	}
-	render(){
+	render() {
 		return (
-                 <div className={style.contact}>
-                    <h3>Contact Us</h3>
-                    <hr />
-                    <p>We try our best to provide user-friendly web services to all users. Please feel free to contact us via:</p>
-                    <div>
-                    <ul>
-                    <li>Duolin Wang, Bond Life Sciences Center, University of Missouri, Columbia, USA
-                        <br />
-                        <a href="mailto:wangdu%40missouri.edu">wangdu@missouri.edu</a>
-                    </li>
-                    
-                    <li>Dong Xu, Bond Life Sciences Center & Department of Electrical Engineer and Computer Science, University of Missouri, Columbia, USA
-                    <br />
-                        <a href="mailto:xudong%40missouri.edu">xudong@missouri.edu</a>
-                    
-                    </li>
-                    <li>Digital Biology Laboratory
-                    <br />
-                    <a href="http://digbio.missouri.edu/">DBL</a>
-                    </li>
-                    </ul>
-                   </div> 
-                </div>
+			<div>
+				<h2 style={{ textAlign: 'center' }}>Contact Us</h2>
+				<div className="page_content">
+					<p>We try our best to provide user-friendly web services to all users. Please feel free to contact us via:</p>
+					<div>
+						<ul>
+							<li>Duolin Wang, Bond Life Sciences Center, University of Missouri, Columbia, USA
+								<br />
+								<a href="mailto:wangdu%40missouri.edu">wangdu@missouri.edu</a>
+							</li>
+
+							<li>Dong Xu, Bond Life Sciences Center & Department of Electrical Engineer and Computer Science, University of Missouri, Columbia, USA
+								<br />
+								<a href="mailto:xudong%40missouri.edu">xudong@missouri.edu</a>
+
+							</li>
+							<li>Digital Biology Laboratory
+								<br />
+								<a href="http://digbio.missouri.edu/">DBL</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		)
 	}
 }
@@ -54,7 +53,7 @@ export default Contact
 						<nav>
 							<ul>
 								<li onClick = {this.props.handleShowPredict}><span>Home</span></li>
-                                <li><span onClick = {this.handleShowHelp}>Help and Tutorial</span></li>
+								<li><span onClick = {this.handleShowHelp}>Help and Tutorial</span></li>
 								<li><span onClick = {this.handleShowDownloadMenu}>Download<b className = {style.caret}></b></span>
 									<div className = {this.state.showDownloadMenu? style.menu : style.menuHide}>
 										<div onClick = {this.handleShowPtm}><label>Uptodate PTM data</label></div>
@@ -68,8 +67,8 @@ export default Contact
 									</div>
 								</li>
 								<li><span>Contact</span></li>
-                                <li><span onClick = {this.props.handleShowProfile}>User job history</span>
-                                </li>
+								<li><span onClick = {this.props.handleShowProfile}>User job history</span>
+								</li>
 							</ul>
 						</nav>
 					</div>

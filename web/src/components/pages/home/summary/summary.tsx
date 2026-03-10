@@ -20,21 +20,21 @@ class Summary extends Component<{}, SummaryState> {
     }
 
     componentDidMount() {
-        this.getVisitors();
+        // this.getVisitors();
         this.getProcessedNumbers();
     }
 
-    async getVisitors() {
-        try {
-            const response = await fetch('../static/visitors/visitors_ip.json');
-            if (!response.ok) throw new Error('Failed to fetch visitors');
-            const data = await response.json();
-            const visitorList: any[] = data.visitors || [];
-            this.setState({ visitors: visitorList.length });
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    // async getVisitors() {
+    //     try {
+    //         const response = await fetch('../static/visitors/visitors_ip.json');
+    //         if (!response.ok) throw new Error('Failed to fetch visitors');
+    //         const data = await response.json();
+    //         const visitorList: any[] = data.visitors || [];
+    //         this.setState({ visitors: visitorList.length });
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 
     async getProcessedNumbers() {
         try {
@@ -58,8 +58,9 @@ class Summary extends Component<{}, SummaryState> {
             <div className={style.titleSection}>
                 <Container>
                     <Row className={`${style.titleRow} justify-content-between`}>
-                        <Col md={7} className={style.titleColumn}>
+                        <Col md={8} className={style.titleColumn}>
                             <h1 className={style.mainTitle}>MUSITE</h1>
+                            <br />
                             <p className={style.subtitle}>
                                 A deep-learning framework for protein post-translational modification site prediction
                             </p>
@@ -77,14 +78,14 @@ class Summary extends Component<{}, SummaryState> {
                                     </div>
                                     
                                     <div className={num_protein > 0 ? style.statLine : style.visitorsHide}>
-                                        The number of total queries
+                                        Total number of queries
                                     </div>
                                     <div className={num_protein > 0 ? style.statNumber : style.visitorsHide}>
                                         <span className={style.flipit}>{num_protein.toLocaleString()}</span>
                                     </div>
                                     
                                     <div className={num_sites > 0 ? style.statLine : style.visitorsHide}>
-                                        The number of total proteins
+                                        Total number of proteins processed
                                     </div>
                                     <div className={num_sites > 0 ? style.statNumber : style.visitorsHide}>
                                         <span className={style.flipit}>{num_sites.toLocaleString()}</span>

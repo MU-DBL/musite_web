@@ -1,0 +1,82 @@
+
+/* Tabs */
+.nav-tabs {
+  border-bottom: 2px solid #d0dff0;
+  gap: 4px;
+}
+
+.nav-tabs .nav-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+  border: 1px solid transparent;
+  border-radius: 6px 6px 0 0;
+  padding: 6px 16px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-tabs .nav-link.active {
+  color: #1e466e;
+  font-weight: 600;
+}
+
+/* Tab content panel */
+.tab-content {
+  padding: 8px 10px;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  background: #fff;
+}
+
+.note {
+  font-size: 0.85rem;
+  width: 90%;
+  background: #e6e6e6;
+  padding: 6px 12px;
+  border-radius: 0 4px 4px 0;
+  display: inline-block;
+  margin: 4px 0 12px 0;
+}
+
+/* Shared page title */
+.page_content{
+	width: 70%;
+	max-width: 100%;
+	height: auto;
+	margin: auto;
+	margin-top: 10px;
+	padding:2%;
+    box-shadow: 0 0 2em rgba(0,0,0,0.2);
+}
+
+.code {
+  display: block;
+  background: #f4f6f8;
+  border: 1px solid #d0dff0;
+  border-radius: 6px;
+  margin: 10px 0 16px;
+  overflow-x: auto;
+}
+
+.codeHide {
+  display: none;
+}
+
+.btn-primary {
+  background-color: #1e466e !important;
+  border-color: #1e466e  !important;
+  font-weight: 500 !important;
+}
+
+.btn-primary:hover {
+  background-color: #163755  !important;
+  border-color: #163755 !important;
+}
+
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #122d45 !important;
+  border-color: #122d45 !important;
+  box-shadow: none;
+}
+

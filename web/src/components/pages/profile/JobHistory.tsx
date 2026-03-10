@@ -215,7 +215,7 @@ const JobHistory: React.FC = () => {
 
     return (
         <div>
-            <h2 style={{ textAlign: 'center' }}>USER JOB HISTORY</h2>
+            <h2 style={{ textAlign: 'center' }}>User Job History</h2>
             <div className={style.history}>
                 <h3>Hello! {userId}</h3>
                 <h3>You have submitted the following jobs ({space} MB of 100 MB used):</h3>

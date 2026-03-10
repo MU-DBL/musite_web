@@ -24,13 +24,14 @@ const JobHistoryTable: React.FC<JobHistoryTableProps> = ({
     handlers
 }) => {
     return (
-        <Table striped bordered hover responsive>
-            <thead>
+        <div style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.1)', borderRadius: '8px', overflow: 'hidden' }}>
+        <Table bordered hover responsive className="table-sm mb-0">
+            <thead style={{ backgroundColor: '#1e466e', color: '#fff' }}>
                 <tr>
-                    <th>Job ID</th>
-                    <th>Status</th>
-                    <th># of sequences</th>
-                    <th>Actions</th>
+                    <th style={{ fontWeight: 600, fontSize: '0.875rem', borderColor: '#163755' }}>Job ID</th>
+                    <th style={{ fontWeight: 600, fontSize: '0.875rem', borderColor: '#163755' }}>Status</th>
+                    <th style={{ fontWeight: 600, fontSize: '0.875rem', borderColor: '#163755' }}># of sequences</th>
+                    <th style={{ fontWeight: 600, fontSize: '0.875rem', borderColor: '#163755' }}>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +64,7 @@ const JobHistoryTable: React.FC<JobHistoryTableProps> = ({
                 ))}
             </tbody>
         </Table>
+        </div>
     );
 };
 

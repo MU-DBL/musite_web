@@ -11,10 +11,10 @@ L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
   iconRetinaUrl: markerIcon2x,
   shadowUrl: markerShadow,
-  iconSize: [15, 24],
-  iconAnchor: [7, 24],
-  popupAnchor: [1, -20],
-  shadowSize: [24, 24],
+  iconSize: [12, 20],
+  iconAnchor: [6, 20],
+  popupAnchor: [1, -16],
+  shadowSize: [20, 20],
 });
 
 const MATOMO_BASE: string = process.env.REACT_APP_MATOMO_BASE || '';
@@ -402,47 +402,45 @@ const Dashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className={style.dashboard}>
-      <div className={style.header}>
-        <h1 className={style.title}>Analytics Dashboard</h1>
-      </div>
+    <div>
+      <h2 style={{ textAlign: 'center' }}>Analytics Dashboard</h2>
+      <div className="page_content">
+        {/* metrics */}
+        <div className={style.widgetsRow}>
+          <div className={style.card}>
+            <p className={style.metricLabel}>Visits in the Past 24 Hours</p>
+            <p className={style.metricValue}>{metrics.visits24h}</p>
+          </div>
 
-      {/* metrics */}
-      <div className={style.widgetsRow}>
-        <div className={style.card}>
-          <p className={style.metricLabel}>Visits in the Past 24 Hours</p>
-          <p className={style.metricValue}>{metrics.visits24h}</p>
+          <div className={style.card}>
+            <p className={style.metricLabel}>Total Visits</p>
+            <p className={style.metricValue}>{metrics.totalVisits.toLocaleString()}</p>
+          </div>
         </div>
 
-        <div className={style.card}>
-          <p className={style.metricLabel}>Total Visits</p>
-          <p className={style.metricValue}>{metrics.totalVisits.toLocaleString()}</p>
+        {/* the chart */}
+        <div className={style.content}>
+          <div className={`${style.card} ${style.cardWide}`}>
+            <p className={style.metricLabel}>Visits for Last 12 Months</p>
+            <canvas
+              ref={chartCanvasRef}
+              style={{ width: '100%', height: '300px' }}
+            />
+          </div>
         </div>
-      </div>
 
-      {/* the chart */}
-      <div className={style.content}>
-        <div className={`${style.card} ${style.cardWide}`}>
-          <p className={style.metricLabel}>Visits for Last 12 Months</p>
-          <canvas
-            ref={chartCanvasRef}
-            style={{ width: '100%', height: '300px' }}
-          />
-        </div>
-      </div>
+        {/* the map */}
+        <div className={style.content}>
+          <div className={`${style.card} ${style.cardWide}`}>
+            <p className={style.metricLabel}>Visitor Map</p>
 
-      {/* the map */}
-      <div className={style.content}>
-        <div className={`${style.card} ${style.cardWide}`}>
-          <p className={style.metricLabel}>Visitor Map</p>
-
-          <div
-            style={{ height: 400, width: '100%', marginTop: 8 }}
-            ref={mapRef}
-          />
-
-          {loading && <p className={style.loading}>Loading map...</p>}
-          {!loading && mapMessage && <p className={style.note}>{mapMessage}</p>}
+            <div
+              style={{ height: 400, width: '100%', marginTop: 8 }}
+              ref={mapRef}
+            />
+            {loading && <p className={style.loading}>Loading map...</p>}
+            {!loading && mapMessage && <p className={style.note}>{mapMessage}</p>}
+          </div>
         </div>
       </div>
     </div>
