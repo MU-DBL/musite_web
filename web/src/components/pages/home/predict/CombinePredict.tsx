@@ -20,8 +20,9 @@ enum StatusEnum {
 
 const CombinePredict: React.FC = () => {
   const [selectedML, setSelectedML] = useState<MLOption>(predictMLSelectOptions[0]);
-  const [selectedPTM, setSelectedPTM] = useState<MultiValue<ModelOption>>([predictPTMSelectOptions[0]]);
+  const [selectedPTM, setSelectedPTM] = useState<MultiValue<ModelOption>>([]);
   const [selectedIons, setSelectedIons] = useState<MultiValue<ModelOption>>([]);
+  
 
 
   const handlePredictMLChange = (newValue: MLOption | null) => {
@@ -56,18 +57,25 @@ const CombinePredict: React.FC = () => {
             options={predictMLSelectOptions}
             value={selectedML}
             onChange={handlePredictMLChange}
+            menuPortalTarget={document.body}
+            menuPosition="absolute"
+            styles={{
+              menuPortal: (base: any) => ({ ...base, zIndex: 9999 })
+            }}
           />
         </div>
         <label style={{ fontSize: '0.75rem' }}>Please select a PTM:</label>
-        <div className={style.select}>
           <Select<ModelOption, true>
             options={predictPTMSelectOptions}
             value={selectedPTM}
             onChange={handlePredictPTM}
             isMulti
             closeMenuOnSelect={false}
+            menuPortalTarget={document.body}
+            styles={{
+              menuPortal: (base: any) => ({ ...base, zIndex: 9999 })  
+            }}
           />
-        </div>
       </div>
       <br />
       <p>For larger job,please upload a FASTA file</p>
