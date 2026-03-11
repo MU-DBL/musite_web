@@ -30,6 +30,7 @@ const JobHistory: React.FC = () => {
     const [title, setTitle] = useState<string[]>([]);
     const [titleIndex, setTitleIndex] = useState<{ label: string; value: number }[]>([]);
     const [results, setResults] = useState<Record<string, string>[]>([]);
+    const [currentJobId, setCurrentJobId] = useState<string>("");
 
     /* ---------------- READ JOBS ---------------- */
     const handleRead = async () => {
@@ -103,7 +104,8 @@ const JobHistory: React.FC = () => {
     /* ---------------- SHOW RESULT ---------------- */
     const handleShowResult = async (jobId: string) => {
         setShowOutput(true);
-        setIsLoading(true); 
+        setIsLoading(true);
+        setCurrentJobId(jobId);
         let resultstatus = 0;
         let statuscount = 0;
 
@@ -241,7 +243,7 @@ const JobHistory: React.FC = () => {
                         isLoading={isLoading}
                         currentresultstatus="All:100"
                         userId={userId}
-                        outputjobId={title}
+                        outputjobId={currentJobId}
                         modelOptions={PTM}
                     />
                 </div>

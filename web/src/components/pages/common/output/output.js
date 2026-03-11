@@ -570,7 +570,6 @@ class Output extends React.Component {
         <div key={index} className={style.item}>
           <div>
             <p className={style.title}>{this.props.title[index]}</p>
-
           </div>
           <div className={this.state.blasted ? style.seqsblast : style.seqs}>
             <div className={style.ptmlabel}>
@@ -621,17 +620,10 @@ class Output extends React.Component {
               </div>
             </div>
           </div>
-          <div className={style.option}>
-            <button className={style.download} onClick={this.handleDownload}>Save the prediction results to a file</button>
-          </div>
-          <div className={this.state.blasted ? style.option : style.hide}>
-            <button className={style.download} onClick={this.handleblastDownload}>Save the current blast result to a file</button>
-          </div>
-
-          <div className={style.options}>
-            <h3 style={{ textAlign: "center" }}>Advanced functions</h3>
-            <div className={style.blastoptions}>
-              <div><button onClick={this.handleBlast}>Blast-based annotation</button></div>
+          <div>
+            <hr></hr>
+            <h6>Advanced functions</h6>
+            <div className={style.box}>
               <div className={style.select}>
                 <MySelect isMulti
                   options={options}
@@ -644,11 +636,14 @@ class Output extends React.Component {
                 />
                 <p>(adjust interested PTMs for BLAST)</p>
               </div>
-
+              <div className={style.blastoptions}>
+                <button className={style.download} onClick={this.handleBlast}>Blast-based annotation</button>
+                <button className={this.state.blasted ? style.download : style.hide} onClick={this.handleblastDownload}>Save the current blast result to a file</button>
+              </div>
             </div>
             <div><hr></hr></div>
-            <div className={style.option}>
-              <button onClick={this.handle3Dbutton}>View predicted PTM sites in 3D structure</button>
+            <div className={style.box}>
+              <button className={style.download} onClick={this.handle3Dbutton}>View predicted PTM sites in 3D structure</button>
             </div>
           </div>
         </div>
@@ -661,6 +656,26 @@ class Output extends React.Component {
           <div className={style.output}>
             <div className={style.outputid}>
               <p>Results for JobID: {this.props.outputjobId}</p>
+              <button className={style.download} onClick={this.handleDownload}>Save the prediction results to a file</button>
+            </div>
+
+            <div className={style.selectholder}>
+              <p>Search results by sequence name:</p>
+              <div className={style.page}>
+                <Select className={style.page_select}
+                  options={this.props.titleindex}
+                  closeMenuOnSelect={true}
+                  onChange={this.handleSelecttitle}
+                  defaultValue={this.props.titleindex ? this.props.titleindex[index] : { 'label': '...', 'value': 0 }}
+                  value={this.props.titleindex ? this.props.titleindex[index] : { 'label': '...', 'value': 0 }}
+                  maxMenuHeight={140}
+                />
+                <div className={style.page}>
+                  <span onClick={this.pageBack}>&lt;</span>
+                  <span><input type="number" value={this.state.currentshow} min="1" max={this.props.input.length} onChange={this.changePage} /> &nbsp; of &nbsp; {this.props.input.length}</span>
+                  <span onClick={this.pageForward}>&gt;</span>
+                </div>
+              </div>
             </div>
             <div className={style.holder}>
               <div className={style.slider}>
@@ -681,24 +696,6 @@ class Output extends React.Component {
 
               <div className={style.items}>
                 {items}
-              </div>
-
-              <div className={style.selectholder}>
-                <p style={{ marginBottom: 0 }}>Search results by sequence name:</p>
-                <Select className={style.select}
-                  options={this.props.titleindex}
-                  closeMenuOnSelect={true}
-                  onChange={this.handleSelecttitle}
-                  defaultValue={this.props.titleindex ? this.props.titleindex[index] : { 'label': '...', 'value': 0 }}
-                  value={this.props.titleindex ? this.props.titleindex[index] : { 'label': '...', 'value': 0 }}
-                  styles={customselectStyles}
-                  maxMenuHeight={140}
-                />
-              </div>
-              <div className={style.page}>
-                <span onClick={this.pageBack}>&lt;</span>
-                <span><input type="number" value={this.state.currentshow} min="1" max={this.props.input.length} onChange={this.changePage} /> &nbsp; of &nbsp; {this.props.input.length}</span>
-                <span onClick={this.pageForward}>&gt;</span>
               </div>
             </div>
           </div>

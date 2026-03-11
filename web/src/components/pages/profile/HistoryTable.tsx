@@ -24,7 +24,7 @@ const JobHistoryTable: React.FC<JobHistoryTableProps> = ({
     handlers
 }) => {
     return (
-        <div style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.1)', borderRadius: '8px', overflow: 'hidden' }}>
+        <div>
         <Table bordered hover responsive className="table-sm mb-0">
             <thead style={{ backgroundColor: '#1e466e', color: '#fff' }}>
                 <tr>

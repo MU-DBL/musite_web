@@ -12,7 +12,7 @@ class Contact extends React.Component {
 			<div>
 				<h2 style={{ textAlign: 'center' }}>Contact Us</h2>
 				<div className="page_content">
-					<p>We try our best to provide user-friendly web services to all users. Please feel free to contact us via:</p>
+					<h6 style={{marginBottom:'20px'}}>We try our best to provide user-friendly web services to all users. Please feel free to contact us via:</h6>
 					<div>
 						<ul>
 							<li>Duolin Wang, Bond Life Sciences Center, University of Missouri, Columbia, USA
