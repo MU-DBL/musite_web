@@ -342,8 +342,6 @@ class Help extends React.Component{
                             outputjobId="2019-10-20T22:58:47.827Z"
                             modelOptions = {this.state.modelOptions}
                     />
-                    <div className = {style.ptmannotation}>
-                       <ul>
 
             </div>
             
