@@ -166,6 +166,7 @@ class Help extends React.Component{
     setTimeout(() => window.scrollTo(0, this.refs.profile.offsetTop), 200); 
   }
   
+  //race condition may arise since we have many setState calls could happen here but funnily enough would never happen since we are hardcoding the userID as this is the help page
   //个人主页中点击show查看某一条历史数据，返回新的输入输出
   handleShowResult = e => { //e is the parameters used when call this handleshowresult
     let title = e.target.title;
@@ -343,17 +344,7 @@ class Help extends React.Component{
                     />
                     <div className = {style.ptmannotation}>
                        <ul>
-                       <li>Phosphorylation:  <span style={{fontWeight: '700',color:'Blue'}}>P</span></li>
-                       <li>Glycosylation:  <span style={{fontWeight: '700',color:'Red'}}>gl</span></li>
-                       <li>Ubiquitination:  <span style={{fontWeight: '700',color:'Gray'}}>ub</span></li>
-                       <li>SUMOylation:  <span style={{fontWeight: '700',color:'Olive'}}>su</span></li>
-                       <li>Acetyllysine:  <span style={{fontWeight: '700',color:'Orange'}}>ac</span></li>
-                       <li>Methylation:  <span style={{fontWeight: '700',color:'Black'}}>me</span></li>
-                       <li>Pyrrolidone carboxylic acid:  <span style={{fontWeight: '700',color:'Purple'}}>pc</span></li>
-                       <li>Palmitoylation:  <span style={{fontWeight: '700',color:'Maroon'}}>pa</span></li>
-                       <li>Hydroxylation:  <span style={{fontWeight: '700',color:'Green'}}>Hy</span></li>
-                       </ul>
-                    </div>
+
             </div>
             
             <div className = "container">
@@ -374,8 +365,8 @@ class Help extends React.Component{
                 </p>
                 <p>Here lists an example of the result file:</p>
                    
-                    <div class={style.textholder}>
-                        <div class={style.textcontent}>
+                    <div className={style.textholder}>
+                        <div className={style.textcontent}>
                          <table border="0">
                          <tbody>
                          <tr><th>ID</th><th>Position</th><th>Residue</th><th>PTMscores</th><th>Cutoff=0.5</th></tr>
@@ -411,14 +402,14 @@ class Help extends React.Component{
                        each line contains 5 columns and separated by the tab character ("\t"):
                     </p>
                     <p className="text-justify" style={{padding:'2em'}}>
-                       1 Protein identifier: the continuous characters before the first space from the title.<bt/>
+                       1 Protein identifier: the continuous characters before the first space from the title.<br/>
                        2 Position: the position of the potential PTM sites.<br/>
                        3 Residue: the amino acid code of the residue at the position.<br/>
                        4 PTMscores: the potential PTMs and their predicted confidence scores;  multiple PTMs are separated by semicolon.<br/>
                        5 Cutoffs=0.5: the predicted PTMs whose scores are higher than the present cutoff; the default cutoff is 0.5, which can be changed according to the user’s selection.<br/>
                     </p>
                     
-                    <h3 className="text-left font-weight-bold" stype={{fontSize:'14px'}}>Other functions:</h3>
+                    <h3 className="text-left font-weight-bold" style={{fontSize:'14px'}}>Other functions:</h3>
                     <p className="text-justify">
                         In the results panel, we provide several advanced functions:
                     </p>
@@ -437,19 +428,7 @@ class Help extends React.Component{
                             outputjobId="2019-10-20T22:58:47.827Z"
                             modelOptions = {this.state.modelOptions}
                     />
-                    <div className = {style.ptmannotation}>
-                       <ul>
-                       <li>Phosphorylation:  <span style={{fontWeight: '700',color:'Blue'}}>P</span></li>
-                       <li>Glycosylation:  <span style={{fontWeight: '700',color:'Red'}}>gl</span></li>
-                       <li>Ubiquitination:  <span style={{fontWeight: '700',color:'Gray'}}>ub</span></li>
-                       <li>SUMOylation:  <span style={{fontWeight: '700',color:'Olive'}}>su</span></li>
-                       <li>Acetyllysine:  <span style={{fontWeight: '700',color:'Orange'}}>ac</span></li>
-                       <li>Methylation:  <span style={{fontWeight: '700',color:'Black'}}>me</span></li>
-                       <li>Pyrrolidone carboxylic acid:  <span style={{fontWeight: '700',color:'Purple'}}>pc</span></li>
-                       <li>Palmitoylation:  <span style={{fontWeight: '700',color:'Maroon'}}>pa</span></li>
-                       <li>Hydroxylation:  <span style={{fontWeight: '700',color:'Green'}}>Hy</span></li>
-                       </ul>
-                    </div>
+
             </div>            
                 
           <div className = "container">
